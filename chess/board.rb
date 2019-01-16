@@ -1,4 +1,6 @@
 require_relative "piece"
+require 'colorize'
+
 class Board
   attr_reader :grid
   def initialize()
@@ -7,10 +9,16 @@ class Board
   end
 
   def populate
-    @grid[0].map! {|ele| ele = Piece.new()}
-    @grid[1].map! {|ele| ele = Piece.new()}
-    @grid[-2].map! {|ele| ele = Piece.new()}
-    @grid[-1].map! {|ele| ele = Piece.new()}
+     x = NullPiece.instance
+    @grid[0].map! {|ele|  Pawn.new } 
+    @grid[1].map! {|ele| Pawn.new()}
+    @grid[-2].map! {|ele| Pawn.new()}
+    @grid[-1].map! {|ele|  Pawn.new()}
+
+    (2..5).each do |row|
+      @grid[row].map! {|ele| x }
+    end 
+
   end
 
   def move_piece(start_pos, end_pos)

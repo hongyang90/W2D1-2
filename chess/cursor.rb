@@ -80,7 +80,7 @@ class Cursor
     when :space || :return
       @cursor_pos
     when :left || :right || :up || :down 
-      update_pos(KEYMAP[key])
+      update_pos(MOVES[key])
     when :ctrl_c
       Process.exit(0)
     end 
